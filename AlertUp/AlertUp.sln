@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlertUp", "AlertUp.csproj", "{EA2FEBA9-CA7D-4F44-9C9A-166217637AC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA2FEBA9-CA7D-4F44-9C9A-166217637AC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2FEBA9-CA7D-4F44-9C9A-166217637AC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2FEBA9-CA7D-4F44-9C9A-166217637AC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2FEBA9-CA7D-4F44-9C9A-166217637AC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02E704A2-9657-4B00-9BFF-A887E6D7D8E9}
+	EndGlobalSection
+EndGlobal
