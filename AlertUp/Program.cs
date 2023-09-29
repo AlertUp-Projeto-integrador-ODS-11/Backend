@@ -3,6 +3,9 @@ using AlertUp.Data;
 using AlertUp.Model;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using AlertUp.Validator;
+using AlertUp.Service.Implements;
+using AlertUp.Service;
 
 namespace AlertUp;
 
@@ -23,6 +26,14 @@ public class Program
         //Conexão com o banco de dados
         var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
+
+        // Validação das Entidades
+        builder.Services.AddTransient<IValidator<Tema>, TemaValidator>();
+
+        // Registrar as Classes e Interfaces Service
+        builder.Services.AddScoped<ITemaService, TemaService>();
+
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
