@@ -24,9 +24,9 @@
     <None Remove="Controllers\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <Compile Remove="Controllers\WeatherForecastController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Controllers\WeatherForecastController.cs" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 </Project>
