@@ -16,5 +16,8 @@ namespace AlertUp.Model
         [Column(TypeName = "varchar")]
         [StringLength(300)]
         public string Descricao { get; set; } = string.Empty;
+        
+        [InverseProperty("Tema")]
+        public virtual ICollection<Postagem>? Postagem { get; set; } = new List<Postagem>();
     }
 }
