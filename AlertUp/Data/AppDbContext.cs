@@ -17,11 +17,17 @@ namespace AlertUp.Data
             modelBuilder.Entity<Postagem>().ToTable("tb_postagens");
             modelBuilder.Entity<User>().ToTable("tb_usuarios");
 
+                _ = modelBuilder.Entity<Postagem>()
+                    .HasOne(_ => _.Tema)
+                    .WithMany(t => t!.Postagem)
+                    .HasForeignKey("TemaId")
+                    .OnDelete(DeleteBehavior.Cascade);
+
         }
 
         public DbSet<Tema> Temas { get; set; } = null!;
         public DbSet<Postagem> Postagens { get; set; } = null!;
-        
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             var insertedEntries = this.ChangeTracker.Entries()
@@ -52,6 +58,6 @@ namespace AlertUp.Data
 
             return base.SaveChangesAsync(cancellationToken);
         }
-        
+
     }
 }
