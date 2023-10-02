@@ -18,7 +18,6 @@ namespace AlertUp.Data
         }
 
         //Registrar um DbSet para cada entidade - Objeto responsável por manipular as tabelas
-
         public DbSet<Tema> Temas { get; set; } = null!;
 
         /*
