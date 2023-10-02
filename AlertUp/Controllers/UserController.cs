@@ -16,10 +16,7 @@ namespace AlertUp.Controllers
         private readonly IUserService _userService;
         private readonly IValidator<User> _userValidator;
 
-        public UserController(
-            IUserService userService
-            IValidator<User> userValidator
-            )
+        public UserController(IUserService userService, IValidator<User> userValidator)
         {
             _userService = userService;
             _userValidator = userValidator;

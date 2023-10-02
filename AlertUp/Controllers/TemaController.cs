@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlertUp.Controllers
 {
-    //[Route] - Indica o endereço Http
     [Route("~/temas")]
-    //[ApiController] indica que a classe é do tipo Controller
     [ApiController]
     public class TemaController : ControllerBase
     {
@@ -32,7 +30,6 @@ namespace AlertUp.Controllers
             return Ok(await _temaService.GetAll());
         }
          
-        //Path de caminho (id = variavel) 
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(long id)
         {
@@ -44,13 +41,12 @@ namespace AlertUp.Controllers
             return Ok(Resposta);
         } 
 
-        // o que está em () é um descricao de caminho
         [HttpGet("descricao/{descricao}")]
         public async Task<ActionResult> GetByDescricao(string descricao)
         {
             return Ok(await _temaService.GetByDescricao(descricao));
         }
-        //[HttpPost] = Cria um valor
+
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] Tema tema)
         {
@@ -62,7 +58,6 @@ namespace AlertUp.Controllers
             return CreatedAtAction(nameof(GetById), new { id = tema.Id }, tema);
         }
 
-        //[HttpPut] = altera um valor
         [HttpPut]
         public async Task<ActionResult> Update([FromBody] Tema tema)
         {
@@ -83,7 +78,6 @@ namespace AlertUp.Controllers
             return Ok(Resposta);
         }
 
-        //[HttpDelete] = Deleta um valor, especificamente chamando pelo id
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(long id)
         {
