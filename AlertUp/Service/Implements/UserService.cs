@@ -7,7 +7,6 @@ namespace AlertUp.Service.Implements
 {
     public class UserService : IUserService
     {
-        //
 
     }
 }

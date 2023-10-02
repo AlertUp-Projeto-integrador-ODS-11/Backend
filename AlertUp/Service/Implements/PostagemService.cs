@@ -15,14 +15,18 @@ namespace AlertUp.Service.Implements
 
         public async Task<IEnumerable<Postagem>> GetAll()
         {
-            return await _context.Postagens.ToListAsync();
+            return await _context.Postagens
+                .Include(t => t.Tema)
+                .ToListAsync();
         }
 
         public async Task<Postagem?> GetById(long id)
         {
             try
             {
-                var Postagem = await _context.Postagens.FirstOrDefaultAsync(i => i.Id == id);
+                var Postagem = await _context.Postagens
+                    .Include(t => t.Tema)
+                    .FirstOrDefaultAsync(i => i.Id == id);
                 return Postagem;
             }
             catch
@@ -35,6 +39,7 @@ namespace AlertUp.Service.Implements
         public async Task<IEnumerable<Postagem>> GetByTitulo(string titulo)
         {
             var Postagem = await _context.Postagens
+                .Include(t => t.Tema)
                 .Where(p => p.Titulo.Contains(titulo))
                 .ToListAsync();
             return Postagem;

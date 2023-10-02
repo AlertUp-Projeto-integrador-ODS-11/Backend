@@ -16,6 +16,7 @@ public class TemaService : ITemaService
     public async Task<IEnumerable<Tema>> GetAll()
     {
         return await _context.Temas
+            .Include(p => p.Postagem)
             .ToListAsync();
     }
 
@@ -24,6 +25,7 @@ public class TemaService : ITemaService
         try
         {
             var tema = await _context.Temas
+                .Include(p => p.Postagem)
                 .FirstAsync(i => i.Id == id);
             return tema;
         }
@@ -36,6 +38,7 @@ public class TemaService : ITemaService
     public async Task<IEnumerable<Tema>> GetByDescricao(string descricao)
     {
         var tema = await _context.Temas
+            .Include(p => p.Postagem)
             .Where(t => t.Descricao.Contains(descricao)).ToListAsync();
         return tema;
     }
