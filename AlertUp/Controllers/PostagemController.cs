@@ -1,9 +1,7 @@
-﻿namespace AlertUp.Controllers;
-using AlertUp.Model;
+﻿using AlertUp.Model;
 using AlertUp.Service;
 using AlertUp.Service.Implements;
 using FluentValidation;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlertUp.Controllers
