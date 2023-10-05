@@ -29,7 +29,6 @@ public class User
     [StringLength(100)]
     public string Municipio { get; set; } = string.Empty;
     
-    /* [InverseProperty("User")]
+    [InverseProperty("User")]
     public virtual ICollection<Postagem>? Postagem { get; set; } = new List<Postagem>();
-    */
 }

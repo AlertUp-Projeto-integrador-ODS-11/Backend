@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AlertUp.Model;
 using AlertUp.Service;
 using Microsoft.IdentityModel.Tokens;
 

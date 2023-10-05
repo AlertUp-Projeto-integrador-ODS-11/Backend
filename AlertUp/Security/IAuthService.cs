@@ -1,3 +1,5 @@
+using AlertUp.Model;
+
 namespace AlertUp.Security;
 
 public interface IAuthService
