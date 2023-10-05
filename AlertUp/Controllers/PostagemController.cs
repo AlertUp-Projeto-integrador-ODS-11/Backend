@@ -2,11 +2,12 @@
 using AlertUp.Service;
 using AlertUp.Service.Implements;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlertUp.Controllers
 {
-  
+    [Authorize]
     [Route("~/postagens")]
     [ApiController]
     public class PostagemController : ControllerBase

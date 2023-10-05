@@ -18,7 +18,7 @@ public class User
     public string Email { get; set; } = string.Empty;
     
     [Column(TypeName = "varchar")]
-    [StringLength(25)]
+    [StringLength(100)]
     public string Senha { get; set; } = string.Empty;
     
     [Column(TypeName = "varchar")]
@@ -26,7 +26,7 @@ public class User
     public string Foto { get; set; } = string.Empty;
     
     [Column(TypeName = "varchar")]
-    [StringLength(100)]
+    [StringLength(255)]
     public string Municipio { get; set; } = string.Empty;
     
     [InverseProperty("User")]

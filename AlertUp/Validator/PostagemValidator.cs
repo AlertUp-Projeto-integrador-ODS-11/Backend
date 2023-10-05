@@ -19,8 +19,6 @@ namespace AlertUp.Validator
 
 
             RuleFor(p => p.Foto)
-                    .NotEmpty()
-                    .MinimumLength(5)
                     .MaximumLength(5000);
 
             RuleFor(p => p.Municipio)

@@ -2,11 +2,13 @@
 using AlertUp.Service;
 using AlertUp.Service.Implements;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AlertUp.Controllers
 {
+    [Authorize]
     [Route("~/temas")]
     [ApiController]
     public class TemaController : ControllerBase

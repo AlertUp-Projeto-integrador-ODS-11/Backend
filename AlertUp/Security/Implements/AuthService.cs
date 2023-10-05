@@ -20,10 +20,10 @@ public class AuthService : IAuthService
     {
         string fotoDefault = "https://i.pinimg.com/originals/57/00/c0/5700c04197ee9a4372a35ef16eb78f4e.png";
         
-        if(userLogin is null || string.IsNullOrEmpty(userLogin.Usuario) || string.IsNullOrEmpty(userLogin.Senha))
+        if(userLogin is null || string.IsNullOrEmpty(userLogin.Email) || string.IsNullOrEmpty(userLogin.Senha))
             return null;
         
-        var buscaUsuario = await _userService.GetByUsuario(userLogin.Usuario);
+        var buscaUsuario = await _userService.GetByUsuario(userLogin.Email);
         
         if(buscaUsuario is null)
             return null;
@@ -38,7 +38,7 @@ public class AuthService : IAuthService
         {
             Subject = new ClaimsIdentity(new Claim[]
             {
-                new Claim(ClaimTypes.Name, userLogin.Usuario)
+                new Claim(ClaimTypes.Name, userLogin.Email)
             }),
             Expires = DateTime.UtcNow.AddHours(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey),
