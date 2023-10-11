@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 using AlertUp.Model;
 
 namespace AlertUp.Data
@@ -63,6 +64,12 @@ namespace AlertUp.Data
 
             return base.SaveChangesAsync(cancellationToken);
         }
-
+        
+        protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        {
+            configurationBuilder
+                .Properties<DateTimeOffset>()
+                .HaveConversion<DateTimeOffsetConverter>();
+        }
     }
 }

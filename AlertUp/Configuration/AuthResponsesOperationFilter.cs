@@ -11,22 +11,22 @@ namespace AlertUp.Configuration
             if (!context.MethodInfo.GetCustomAttributes(true).Any(options => options is AllowAnonymousAttribute))
             {
                 operation.Security = new List<OpenApiSecurityRequirement>
-            {
-                new OpenApiSecurityRequirement
                 {
+                    new OpenApiSecurityRequirement
                     {
-                        new OpenApiSecurityScheme
                         {
-                            Reference = new OpenApiReference
+                            new OpenApiSecurityScheme
                             {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "JWT"
-                            }
-                        },
-                        Array.Empty<string>()
+                                Reference = new OpenApiReference
+                                {
+                                    Type = ReferenceType.SecurityScheme,
+                                    Id = "JWT"
+                                }
+                            },
+                            Array.Empty<string>()
+                        }
                     }
-                }
-            };
+                };
             }
         }
     }
