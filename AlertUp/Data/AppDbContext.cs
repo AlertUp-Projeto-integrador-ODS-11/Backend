@@ -45,7 +45,7 @@ namespace AlertUp.Data
 
                 if (insertedEntry is Auditable auditableEntity)
                 {
-                    auditableEntity.Data = new DateTimeOffset(DateTime.Now, new TimeSpan(3,0,0));
+                    auditableEntity.Data = DateTimeOffset.Now;
                 }
             }
 
@@ -58,7 +58,7 @@ namespace AlertUp.Data
 
                 if (modifiedEntry is Auditable auditableEntity)
                 {
-                    auditableEntity.Data = new DateTimeOffset(DateTime.Now, new TimeSpan(-3,0,0));
+                    auditableEntity.Data = DateTimeOffset.Now;
                 }
             }
 

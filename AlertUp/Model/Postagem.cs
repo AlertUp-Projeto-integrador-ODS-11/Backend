@@ -29,6 +29,8 @@ public class Postagem : Auditable
     [StringLength(100)]
     public string Municipio { get; set; } = string.Empty;
     
+    
+    
     public virtual Tema? Tema { get; set; }
     public virtual User? User { get; set; }
 }
