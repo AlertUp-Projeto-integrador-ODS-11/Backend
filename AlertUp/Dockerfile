@@ -4,13 +4,14 @@ FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 ENV ASPNETCORE_URLS http://*:80
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["AlertUp.csproj", "."]
-RUN dotnet restore "./AlertUp.csproj"
+COPY ["AlertUp.csproj", "./"]
+RUN dotnet restore "AlertUp.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/"
 RUN dotnet build "AlertUp.csproj" -c Release -o /app/build
 
 FROM build AS publish
