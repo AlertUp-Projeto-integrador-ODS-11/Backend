@@ -134,6 +134,8 @@ public class Program
         });
 
         var app = builder.Build();
+        
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
         using (var scope = app.Services.CreateAsyncScope())
         {
