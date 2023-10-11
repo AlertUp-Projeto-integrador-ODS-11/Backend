@@ -142,8 +142,21 @@ public class Program
             dbContext.Database.EnsureCreated();
         }
 
-            app.UseSwagger();
+        app.UseSwagger();
+
+        //Swagger como página inicial na nuvem
+        if (app.Environment.IsProduction())
+        {
+            app.UseSwaggerUI(options =>
+            {
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "AlertUp - v1");
+                options.RoutePrefix = string.Empty;
+            });
+        }
+        else
+        {
             app.UseSwaggerUI();
+        }
 
 
         app.UseCors("MyPolicy");
