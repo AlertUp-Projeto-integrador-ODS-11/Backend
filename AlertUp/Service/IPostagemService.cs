@@ -9,6 +9,8 @@ namespace AlertUp.Service
         Task<Postagem?> GetById(long id);
 
         Task<IEnumerable<Postagem>> GetByTitulo(string titulo);
+        
+        Task<Postagem?> Curtir(long id);
 
         Task<Postagem?> Create(Postagem postagem);
 

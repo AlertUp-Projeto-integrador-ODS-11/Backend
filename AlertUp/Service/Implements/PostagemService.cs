@@ -45,6 +45,19 @@ namespace AlertUp.Service.Implements
             return Postagem;
         }
 
+        public async Task<Postagem?> Curtir(long id)
+        {
+            var postagem = await _context.Postagens
+                .Include(p => p.Tema)
+                .FirstOrDefaultAsync(p => p.Id == id);
+            if (postagem is null)
+                return null;
+            postagem.Relevancia += 1;
+            _context.Update(postagem);
+            await _context.SaveChangesAsync();
+            return postagem;
+        }
+
         public async Task<Postagem?> Create(Postagem postagem)
         {
             if (postagem.Tema is not null)
@@ -83,7 +96,6 @@ namespace AlertUp.Service.Implements
             await _context.SaveChangesAsync();
 
             return postagem;
-
         }
 
         public async Task Delete(Postagem postagem)

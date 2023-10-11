@@ -22,7 +22,12 @@ namespace AlertUp.Data
                     .WithMany(t => t!.Postagem)
                     .HasForeignKey("TemaId")
                     .OnDelete(DeleteBehavior.Cascade);
-
+                
+                _ = modelBuilder.Entity<Postagem>()
+                    .HasOne(_ => _.User)
+                    .WithMany(t => t!.Postagem)
+                    .HasForeignKey("UsuarioId")
+                    .OnDelete(DeleteBehavior.Cascade);
         }
 
         public DbSet<Tema> Temas { get; set; } = null!;

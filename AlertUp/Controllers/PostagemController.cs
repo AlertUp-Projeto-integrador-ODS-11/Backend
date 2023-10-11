@@ -49,6 +49,19 @@ namespace AlertUp.Controllers
         {
             return Ok(await _postagemService.GetByTitulo(titulo));
         }
+        
+        [HttpPut("curtir/{id}")]
+        public async Task<ActionResult> Curtir(long id)
+        {
+            var resposta = await _postagemService.Curtir(id);
+
+            if (resposta is null)
+            {
+                return NotFound("Postagem não encontrada!");
+            }
+
+            return Ok(resposta);
+        }
 
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] Postagem postagem)
