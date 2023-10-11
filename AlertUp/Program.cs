@@ -4,14 +4,17 @@ using AlertUp.Model;
 using AlertUp.Security;
 using AlertUp.Security.Implements;
 using FluentValidation;
+using AlertUp.Configuration;
 using Microsoft.EntityFrameworkCore;
 using AlertUp.Validator;
 using AlertUp.Service.Implements;
 using AlertUp.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
-namespace AlertUp;
+namespace AlertUp { }
 
 public class Program
 {
@@ -19,7 +22,6 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
 
         builder.Services.AddControllers()
             .AddNewtonsoftJson(options =>
@@ -28,17 +30,32 @@ public class Program
                 options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
 
-        //Conexão com o banco de dados
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-        builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
+        if (builder.Configuration["Enviroment:Start"] == "PROD")
+        {
+            builder.Configuration
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("secrets.json");
 
-        // Validação das Entidades
+            var connectionString = builder.Configuration
+            .GetConnectionString("ProdConnection");
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(connectionString));
+        }
+        else
+        {
+            var connectionString = builder.Configuration
+                .GetConnectionString("DefaultConnection");
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(connectionString));
+        }
+
         builder.Services.AddTransient<IValidator<Tema>, TemaValidator>();
         builder.Services.AddTransient<IValidator<Postagem>, PostagemValidator>();
         builder.Services.AddTransient<IValidator<User>, UserValidator>();
-
-        // Registrar as Classes e Interfaces Service
+       
         builder.Services.AddScoped<ITemaService, TemaService>();
         builder.Services.AddScoped<IPostagemService, PostagemService>();
         builder.Services.AddScoped<IUserService, UserService>();
@@ -64,10 +81,48 @@ public class Program
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen(options =>
+        {
 
-        //Configuração do CORS
-        builder.Services.AddCors(options =>
+            options.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Version = "v1",
+                Title = "Projeto AlertUp",
+                Description = "Rede social de denúncias baseada na ODS 11.",
+                Contact = new OpenApiContact
+                {
+                    Name = "AlertUp",
+                    Email = "alertupods11@gmail.com",
+                    Url = new Uri("https://github.com/AlertUp-Projeto-integrador-ODS-11")
+                },
+                License = new OpenApiLicense
+                {
+                    Name = "Acesse o GitHub",
+                    Url = new Uri("https://github.com/AlertUp-Projeto-integrador-ODS-11")
+                }
+            });
+            
+
+            options.AddSecurityDefinition("JWT", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Description = "Digite um Token JWT válido",
+                Name = "Authorization",
+                Type = SecuritySchemeType.Http,
+                BearerFormat = "JWT",
+                Scheme = "Bearer"
+
+            });
+
+
+            options.OperationFilter<AuthResponsesOperationFilter>();
+        });
+
+
+        builder.Services.AddFluentValidationRulesToSwagger();
+          
+
+            builder.Services.AddCors(options =>
         {
             options.AddPolicy(name: "MyPolicy",
             policy =>
@@ -80,19 +135,15 @@ public class Program
 
         var app = builder.Build();
 
-        //Criar o banco de dados e as tabelas
         using (var scope = app.Services.CreateAsyncScope())
         {
             var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
             dbContext.Database.EnsureCreated();
         }
 
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
-        {
             app.UseSwagger();
             app.UseSwaggerUI();
-        }
+
 
         app.UseCors("MyPolicy");
         

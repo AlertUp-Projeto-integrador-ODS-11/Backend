@@ -17,6 +17,7 @@ namespace AlertUp.Service.Implements
         {
             return await _context.Postagens
                 .Include(t => t.Tema)
+                .Include(u => u.User)
                 .ToListAsync();
         }
 
@@ -26,6 +27,7 @@ namespace AlertUp.Service.Implements
             {
                 var Postagem = await _context.Postagens
                     .Include(t => t.Tema)
+                    .Include(u => u.User)
                     .FirstOrDefaultAsync(i => i.Id == id);
                 return Postagem;
             }
@@ -40,6 +42,7 @@ namespace AlertUp.Service.Implements
         {
             var Postagem = await _context.Postagens
                 .Include(t => t.Tema)
+                .Include(u => u.User)
                 .Where(p => p.Titulo.Contains(titulo))
                 .ToListAsync();
             return Postagem;
@@ -49,6 +52,7 @@ namespace AlertUp.Service.Implements
         {
             var postagem = await _context.Postagens
                 .Include(p => p.Tema)
+                .Include(u => u.User)
                 .FirstOrDefaultAsync(p => p.Id == id);
             if (postagem is null)
                 return null;
@@ -69,6 +73,8 @@ namespace AlertUp.Service.Implements
             }
 
             postagem.Tema = postagem.Tema is not null ? _context.Temas.FirstOrDefault(t => t.Id == postagem.Tema.Id) : null;
+            postagem.User = postagem.User is not null ? _context.Users.FirstOrDefault(u => u.Id == postagem.User.Id) : null;
+
             await _context.Postagens.AddAsync(postagem);
             await _context.SaveChangesAsync();
 
