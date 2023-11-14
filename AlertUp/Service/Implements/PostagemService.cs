@@ -99,7 +99,7 @@ namespace AlertUp.Service.Implements
                 postagem.Tema = BuscaTema;
             }
 
-            postagem.Usuario = postagem.Usuario is not null ? await _context.Users.FirstOrDefaultAsync(u => u.Id == postagem.Usuario.Id) : null;
+            postagem.User = postagem.User is not null ? await _context.Users.FirstOrDefaultAsync(u => u.Id == postagem.User.Id) : null;
 
             _context.Entry(PostagemUpdate).State = EntityState.Detached;
             _context.Entry(postagem).State = EntityState.Modified;
