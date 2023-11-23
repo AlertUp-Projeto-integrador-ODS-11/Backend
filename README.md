@@ -78,16 +78,14 @@ Outra opção é usar uma IDE .NET de sua preferência, como Visual Studio ou Je
 
 <br>
 
-**Equipe do Projeto:**
-
-- **Equipe do Projeto:**
+## Equipe do Projeto:
 
   | [<img src="https://avatars.githubusercontent.com/u/11530020?v=4" width=115><br><sub>Breno Henrique</sub>](https://github.com/brenonsc) | [<img src="https://avatars.githubusercontent.com/u/109256764?v=4" width=115><br><sub>Julia Alexandrino</sub>](https://github.com/juhalexandrino) | [<img src="https://avatars.githubusercontent.com/u/102914299?v=4" width=115><br><sub>Matheus Queiroz</sub>](https://github.com/MatheusSQueiroz) | [<img src="https://avatars.githubusercontent.com/u/85324161?v=4" width=115><br><sub>Shomara Quispe</sub>](https://github.com/ShomaraQuispe) | [<img src="https://avatars.githubusercontent.com/u/70173955?v=4" width=115><br><sub>Victor Paliari</sub>](https://github.com/victorpaliari) |
   | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 
 <br>
 
-**Funcionalidades:**
+## Funcionalidades:
 
 - Registro e autenticação de usuários.
 - Criação e edição de denúncias.
