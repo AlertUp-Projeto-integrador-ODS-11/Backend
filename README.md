@@ -86,17 +86,6 @@ Outra opção é usar uma IDE .NET de sua preferência, como Visual Studio ou Je
 
 <br>
 
-## Funcionalidades:
-
-- Registro e autenticação de usuários.
-- Criação e edição de denúncias.
-- Interações com denúncias.
-- Classificação de denúncias com base na gravidade.
-- Notificações em tempo real sobre atualizações de denúncias.
-- Busca avançada de denúncias por categoria, localização, etc.
-
-<br>
-
 ## Projeto Integrador para Conclusão de Curso da Generation Brasil
 
 Este projeto faz parte dos requisitos para a conclusão do programa de treinamento da Generation Brasil. Foi uma oportunidade incrível para colocarmos em prática todas as tecnologias aprendidas durante o curso, além das soft skills relacionadas a trabalho em grupo, orientação ao futuro, entre outras.
